@@ -28,4 +28,22 @@ export class LyricService {
     const lyric = this.lyricRepository.create({ likes, content });
     return await this.lyricRepository.save(lyric);
   }
+
+  //UPDATE LYRIC
+  async updateLyric(
+    id: string,
+    createLyricsInput: CreateLyricsInput,
+  ): Promise<Lyric> {
+    const { likes, content } = createLyricsInput;
+    const lyric = await this.lyricRepository.findOne(id);
+    lyric.likes = likes;
+    lyric.content = content;
+    return await this.lyricRepository.save(lyric);
+  }
+
+  //DELETE LYRIC
+  async deleteLyric(id: string): Promise<Lyric> {
+    const lyric = await this.lyricRepository.findOne(id);
+    return await this.lyricRepository.remove(lyric);
+  }
 }

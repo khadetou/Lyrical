@@ -24,4 +24,19 @@ export class LyricResolver {
   createLyric(@Args('createLyricsInput') createLyricsInput: CreateLyricsInput) {
     return this.lyricService.createLyric(createLyricsInput);
   }
+
+  //UPDATE LYRIC
+  @Mutation((returns) => LyricType)
+  async updateLyric(
+    @Args('id') id: string,
+    @Args('createLyricsInput') createLyricsInput: CreateLyricsInput,
+  ) {
+    return await this.lyricService.updateLyric(id, createLyricsInput);
+  }
+
+  //DELETE LYRIC
+  @Mutation((returns) => LyricType)
+  async deleteLyric(@Args('id') id: string) {
+    return await this.lyricService.deleteLyric(id);
+  }
 }
